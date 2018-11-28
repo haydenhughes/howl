@@ -1,0 +1,20 @@
+timeout: 48
+
+services:
+  - !Email
+    recipient: example@example.com, example2@example.net
+    sender: example@example.com
+    subject: Ahh-wooooooo!
+    body: |
+      RED ALERT 1
+
+      <3 Howl
+
+  - !Email
+    recipient: example@example.com
+    sender: example@example.com
+    subject: Ahh-wooooooo!
+    body: |
+      RED ALERT 2
+
+      <3 Howl
