@@ -1,7 +1,5 @@
 FROM python:3-alpine
 
-ENV FLASK_APP="howl"
-
 WORKDIR /howl
 COPY requirements.txt ./
 COPY . .
