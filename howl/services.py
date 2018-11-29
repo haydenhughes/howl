@@ -1,6 +1,6 @@
 import smtplib
 import yaml
-from .application import app
+from config import Config  # A bit of a hack but removes circular imports.
 from email.message import EmailMessage
 
 
@@ -26,13 +26,13 @@ class Email(yaml.YAMLObject):
         self.timeout = timeout
 
     def send(self,
-             host=app.config['SMTP_HOST'],
-             username=app.config['SMTP_USERNAME'],
-             password=app.config['SMTP_PASSWORD'],
-             port=app.config['SMTP_PORT']):
+             host=Config.SMTP_HOST,
+             username=Config.SMTP_USERNAME,
+             password=Config.SMTP_PASSWORD,
+             port=Config.SMTP_PORT):
         """Send the email!
 
-        You'll note that all the args have a default to their repective app
+        You'll note that all the args have a default to their repective
         config. This is so that send() can be called without needing any args
         to be directly passed to it so that howl can be as modular as possible
         to allow adding various services.

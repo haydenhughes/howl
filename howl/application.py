@@ -2,6 +2,7 @@ import pyotp
 from flask import Flask
 from logging.config import dictConfig
 from flask_httpauth import HTTPBasicAuth
+from .alerts import Monitor, parse
 
 # Configure flask's logger
 dictConfig({
@@ -24,8 +25,6 @@ app = Flask(__name__)
 app.config.from_object('config.Config')
 app.logger.setLevel(app.config['LOG_LEVEL'])
 auth = HTTPBasicAuth()
-
-from .alerts import Monitor, parse
 monitor = Monitor(check_interval=app.config['CHECK_INTERVAL'])
 totp = pyotp.TOTP(app.config['TOTP_SECRET'])
 

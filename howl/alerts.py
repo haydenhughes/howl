@@ -4,7 +4,6 @@ import glob
 import time
 import threading
 from datetime import datetime
-from .application import app, trigger
 from .services import *  # Required for yaml.load
 
 
@@ -38,7 +37,8 @@ class Monitor(threading.Thread):
         for alert in parse_all():
             if alert['timeout'] is not None:
                 if delta_time >= datetime.difftime(alert['timeout']):
-                    trigger(alert['name'])
+                    for service in alert['services']:
+                        service.send()
 
     def run(self):
         """Called by Monitor.start() to start the thead."""
