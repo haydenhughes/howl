@@ -1,6 +1,6 @@
 import smtplib
 import yaml
-from flask import current_app
+from .application import app
 from email.message import EmailMessage
 
 
@@ -26,10 +26,10 @@ class Email(yaml.YAMLObject):
         self.timeout = timeout
 
     def send(self,
-             host=current_app.config['SMTP_HOST'],
-             username=current_app.config['SMTP_USERNAME'],
-             password=current_app.config['SMTP_PASSWORD'],
-             port=current_app.config['SMTP_PORT']):
+             host=app.config['SMTP_HOST'],
+             username=app.config['SMTP_USERNAME'],
+             password=app.config['SMTP_PASSWORD'],
+             port=app.config['SMTP_PORT']):
         """Send the email!
 
         You'll note that all the args have a default to their repective app

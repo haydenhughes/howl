@@ -4,7 +4,7 @@ import glob
 import time
 import threading
 from datetime import datetime
-from . import trigger
+from .application import app, trigger
 from .services import *  # Required for yaml.load
 
 

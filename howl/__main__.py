@@ -1,5 +1,4 @@
-from . import app, monitor
+from .application import monitor, app
 
-if __name__ == '__main__':
-    monitor.start()
-    app.run(host='0.0.0.0')
+monitor.start()
+app.run(host='0.0.0.0')
