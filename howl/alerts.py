@@ -1,7 +1,7 @@
 import yaml
 import os
 import glob
-from .services import *
+from .services import *  # Required for yaml.load
 
 
 def parse(alert):
