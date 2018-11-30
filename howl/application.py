@@ -50,7 +50,7 @@ def trigger(alert):
         try:
             service.send()
         except Exception as e:
-            return e.msg
+            return str(e)
 
     return 'DONE, I hope you know what your doing...'
 
