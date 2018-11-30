@@ -18,11 +18,11 @@ class Email(yaml.YAMLObject):
     """
     yaml_tag = u'!Email'
 
-    def __init__(self, recipient, sender, subject, message, timeout):
+    def __init__(self, recipient, sender, subject, body, timeout):
         self.recipient = recipient
         self.sender = sender
         self.subject = subject
-        self.message = message
+        self.body = body
         self.timeout = timeout
 
     def send(self,
@@ -49,6 +49,7 @@ class Email(yaml.YAMLObject):
         msg['From'] = self.sender
         msg['Subject'] = self.subject
         msg.set_content(self.message)
+        msg.set_content(self.body)
 
         with smtplib.SMTP(host=host,
                           port=port) as s:
