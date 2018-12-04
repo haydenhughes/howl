@@ -1,5 +1,6 @@
 # Howl
 A dead man's switch that sends alerts if a GET request doesn't arrive on time.
+Check out wolf for a cli client to help streamline the process of checkin.
 
 ## Services
 A service is a platform which can send data like emails or discord. Currently
@@ -9,6 +10,9 @@ the supported services are:
 
 Adding a service only requires adding a class to `services.py`. Refer to
 `Email` as a template.
+
+## Checkin
+The action of sending a GET request to Howl to notify it that you still exist.
 
 ## Alerts
 An alert defines when and how to use one or more services. Alerts are
