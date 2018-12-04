@@ -18,7 +18,7 @@ class Email(yaml.YAMLObject):
     """
     yaml_tag = u'!Email'
 
-    def __init__(self, recipient, sender, subject, message, timeout):
+    def __init__(self, recipient, sender, subject, message, timeout=None):
         self.recipient = recipient
         self.sender = sender
         self.subject = subject
@@ -50,7 +50,7 @@ class Email(yaml.YAMLObject):
         msg['Subject'] = self.subject
         msg.set_content(self.message)
 
-        with smtplib.SMTP(host=host,
-                          port=port) as s:
+        with smtplib.SMTP_SSL(host=host,
+                              port=port) as s:
             s.login(username, password)
             s.send_message(msg)
