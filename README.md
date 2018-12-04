@@ -1,6 +1,6 @@
 # Howl
 A dead man's switch that sends alerts if a GET request doesn't arrive on time.
-Check out wolf for a cli client to help streamline the process of checkin.
+Check out [wolf](https://github.com/huggles/wolf) for a cli client to help streamline the process of checkin.
 
 ## Services
 A service is a platform which can send data like emails or discord. Currently
