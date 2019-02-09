@@ -18,12 +18,11 @@ class Email(yaml.YAMLObject):
     """
     yaml_tag = u'!Email'
 
-    def __init__(self, recipient, sender, subject, body, timeout=None):
+    def __init__(self, recipient, sender, subject, body):
         self.recipient = recipient
         self.sender = sender
         self.subject = subject
         self.body = body
-        self.timeout = timeout
 
     def send(self,
              host=Config.SMTP_HOST,
