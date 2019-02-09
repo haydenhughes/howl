@@ -2,7 +2,7 @@ import pyotp
 from flask import Flask
 from logging.config import dictConfig
 from flask_httpauth import HTTPBasicAuth
-from .alerts import Monitor, parse
+from .alerts import Monitor, Alert
 
 # Configure flask's logger
 dictConfig({
@@ -46,7 +46,9 @@ def trigger(alert):
     Args:
         alert: A string of the alert file (without the .yml).
     """
-    for service in parse(alert)['services']:
+    alert = Alert(alert)
+
+    for service in alert:
         try:
             service.send()
         except Exception as e:
