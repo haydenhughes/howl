@@ -34,10 +34,10 @@ class Monitor(threading.Thread):
     def _check(self):
         """Checks to see if any alerts should be triggered."""
         delta_time = datetime.now() - self.last_checkin
-        for alert in parse_all():
-            if alert['timeout'] is not None:
+        for alert in all():
+            if alert.timeout is not None:
                 if delta_time >= datetime.difftime(alert['timeout']):
-                    for service in alert['services']:
+                    for service in alert.services:
                         service.send()
 
     def run(self):
@@ -47,21 +47,29 @@ class Monitor(threading.Thread):
             self._check()
 
 
-def parse(alert):
-    """Parses the alerts.
+class Alert(object):
+    """Wraps the alert configuration.
 
-    The services get converted to their respective objects.
-
-    Args:
-        alert: A string of the name of the alert to parse (without the .yml).
+    Attributes:
+        name: A string of the alert name.
+        timeout: An interger of the alert timeout.
+        services: A list of service objects associated with the alert.
     """
-    with open('alerts/{}.yml'.format(alert)) as fp:
-        a = yaml.load(fp)
-        a['name'] = alert
-        return a
+
+    def __init__(self, name):
+        with open('alerts/{}.yml'.format(name)) as fp:
+            config = yaml.load(fp)
+
+        self.name = name
+        self.timeout = config['timeout']
+        self.services = config['services']
 
 
-def parse_all():
-    """A generator to parse all the alerts in `alerts/`"""
+def all():
+    """A generator to get all the alerts in `alerts/`
+
+    Yeilds:
+        Alert objects of all the alerts.
+    """
     for alert in glob.glob(os.path.join('alerts/*.yml')):
-        yield parse(alert)
+        yield Alert(alert)
