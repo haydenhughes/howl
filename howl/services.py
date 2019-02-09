@@ -1,6 +1,6 @@
 import smtplib
 import yaml
-from config import Config  # A bit of a hack but removes circular imports.
+from .app import app
 from email.message import EmailMessage
 
 
@@ -25,10 +25,10 @@ class Email(yaml.YAMLObject):
         self.body = body
 
     def send(self,
-             host=Config.SMTP_HOST,
-             username=Config.SMTP_USERNAME,
-             password=Config.SMTP_PASSWORD,
-             port=Config.SMTP_PORT):
+             host=app.config['SMTP_HOST'],
+             username=app.config['SMTP_USERNAME'],
+             password=app.config['SMTP_PASSWORD'],
+             port=app.config['SMTP_PORT']):
         """Send the email!
 
         You'll note that all the args have a default to their repective
