@@ -10,7 +10,7 @@ from .services import *  # Required for yaml.load
 class Monitor(threading.Thread):
     """Checks when the last check in was and acts accordingly.
 
-    Monitor runs as a thread to avoid sleeping the api.
+    Monitor runs as a thread to avoid hanging the api.
 
     Attributes:
         check_interval: An integer of the amount of seconds to wait before
