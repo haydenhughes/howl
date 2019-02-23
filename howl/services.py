@@ -4,6 +4,16 @@ from config import Config  # A bit of a hack but removes circular imports.
 from email.message import EmailMessage
 
 
+class Test(yaml.YAMLObject):
+    yaml_tag = u'!Test'
+
+    def __init__(self):
+        pass
+
+    def send(self):
+        pass
+
+
 class Email(yaml.YAMLObject):
     """A interface to create and send emails.
 
