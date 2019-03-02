@@ -2,6 +2,11 @@
 A dead man's switch that sends alerts if a GET request doesn't arrive on time.
 Check out [wolf](https://gitlab.com/huggles/wolf) for a cli client to help streamline the process of checkin.
 
+## DISCLAIMER
+*DO NOT USE HOWL TO PROTECT ANYTHING IMPORTANT*. Howl is extremely alpha
+and should not be trusted. Howl comes with ABSOLUTELY NO WARRANTY. I am not
+responsible for any damages.
+
 ## Services
 A service is a platform which can send data like emails or discord. Currently
 the supported services are:
