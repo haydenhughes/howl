@@ -102,4 +102,4 @@ docker build -t howl .
 Go for it!
 
 ## Licence
-Deposer is distributed under the GNU General Public License Version 3.
+Howl is distributed under the GNU General Public License Version 3.
